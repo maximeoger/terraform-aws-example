@@ -1,0 +1,13 @@
+### Terraform ###
+# Local .terraform directories
+**/.terraform/*
+
+# tfvars
+terraform.tfvars
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# other
+.idea/
