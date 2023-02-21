@@ -123,7 +123,7 @@ resource "aws_security_group" "allow_web" {
     cidr_blocks      = ["0.0.0.0/0"]
   }
 
-  egress { // c'est quoi ca ?
+  egress { // pour autoriser le traffic externe depuis l'instance (pour installer des dépendances ubuntu par ex)
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
@@ -135,10 +135,10 @@ resource "aws_security_group" "allow_web" {
   }
 }
 
-# 7 _ Création d'une interface réseau
-resource "aws_network_interface" "web_server_max" { // c'est quoi ça ?
+# 7 _ Création d'une network interface (resprésente une carte réseau virtuelle dans le VPC)
+resource "aws_network_interface" "web_server_max" {
   subnet_id       = aws_subnet.subnet_1.id
-  private_ips     = ["10.0.1.50"]
+  private_ips     = ["10.0.1.50"] # Possibilité de choisir n'importe quelle IP du subnet non reservées par aws
   security_groups = [aws_security_group.allow_web.id]
 }
 
